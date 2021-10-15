@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# Хакимуллин Рустем Рафаилевич 11-901
 from os import fork, getpid, wait, execv
 from sys import argv
 from random import randint

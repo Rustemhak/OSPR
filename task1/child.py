@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# Хакимуллин Рустем Рафаилевич 11-901
 from os import getpid, _exit
 from sys import argv
 from time import sleep
