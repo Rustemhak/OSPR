@@ -4,29 +4,29 @@ cnt_guessed=0
 re='^[0-9]+$'
 for ((;;))  do
         rand=$((190 + $RANDOM % 10))
-        echo Введите число от 190 до 199:
-        read num
+        echo Step: $cnt
+        read -p "Please enter number from 190 to 199 (q - quit): " num
         if [[ $num == q ]]; then
-                echo Выход; break
+                echo Exit; break
         elif ! [[ $num =~ $re ]] || (($num > 199)) || (($num < 190)); then
-                echo Неверный ввод, повторите ещё раз!
+                echo Incorrect input! please enter again
         else
                 if (($num == $rand)); then
                         last_numbers[cnt - 1]=$rand+
                         ((cnt_guessed++))
-                        echo Число угадано
+                        echo Correctly! My number: $rand
                 else
                         last_numbers[cnt - 1]=$rand
-                        echo Число не угадано
+                        echo Miss! My number: $rand
                 fi
                 guess_per=$((100 * $cnt_guessed/$cnt))
                 not_guess_per=$((100 - $guess_per))
-                echo Процент угаданных:  $guess_per%
-                echo Процент неугаданных:  $not_guess_per%
-                echo "Последние загаданные числа (до 7): "
+                echo Hit:  $guess_per% Miss:  $not_guess_per%
+                echo -n Numbers:" "
                 for ((i=1; ((i <=7)) && ((i <=cnt)) ; i++)) do
-                        echo ${last_numbers[-i]}
+                        echo -n ${last_numbers[-i]}" "
                 done
+                echo
                 ((cnt++))
         fi
 done
